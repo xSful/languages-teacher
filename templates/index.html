@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek V3 Chat</title>
+</head>
+<body>
+    <h1>Chat with DeepSeek V3</h1>
+    <form id="promptForm">
+        <textarea id="prompt" name="prompt" rows="4" cols="50"></textarea><br>
+        <button type="submit">Generate Response</button>
+    </form>
+    <h2>Response:</h2>
+    <p id="response"></p>
+
+    <script>
+        document.getElementById("promptForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const prompt = document.getElementById("prompt").value;
+            const response = await fetch("/generate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt }),
+            });
+            const data = await response.json();
+            if (data.error) {
+                document.getElementById("response").innerText = "Error: " + data.error;
+            } else {
+                document.getElementById("response").innerText = data.response;
+            }
+        });
+    </script>
+</body>
+</html>
