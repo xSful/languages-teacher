@@ -13,11 +13,11 @@ giga = GigaChat(
    scope="GIGACHAT_API_PERS",
    model="GigaChat",
 )
-response = giga.get_token()
+#response = giga.get_token()
 
-print(response)
-""" try:
+#print(response)
+try:
     response = giga.chat("Привет! Как дела?")
     print(response.choices[0].message.content)
 except Exception as e:
-    print(f"Ошибка: {e}") """
+    print(f"Ошибка: {e}") 
